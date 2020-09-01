@@ -55,15 +55,29 @@ function displayMainPageCover() {
 function showUserFormPage() {
   for (var i = 0; i < inputFields.length; i++) { 
      inputFields[i].value = ''   }
+  switchToUserPage();
+  userPageButtonHandler();
+  switchPagesSaveToUser();
+}
+
+function switchToUserPage() {
   mainPageDisplay.classList.add('hidden');
   displayUserForm.classList.remove('hidden');
+}
+
+function userPageButtonHandler() {
   showNewCoverButton.classList.add('hidden');
   saveCoverButton.classList.add('hidden');
   homeButton.classList.remove('hidden');
   viewSavedButton.classList.remove('hidden');
+}
+
+function switchPagesSaveToUser() {
   savedCoverSection.classList.add('hidden');
   viewSaveCoversSection.classList.add('hidden');
 }
+
+
 
 function viewSavedCovers() {
   viewSaveCoversSection.classList.remove('hidden');
@@ -78,6 +92,7 @@ function viewSavedCovers() {
 
 function homeButtonFunction() {
   mainPageDisplay.classList.remove('hidden');
+  displayUserForm.classList.add('hidden')
   homeButton.classList.add('hidden');
   saveCoverButton.classList.remove('hidden');
   showNewCoverButton.classList.remove('hidden');
