@@ -77,17 +77,23 @@ function switchPagesSaveToUser() {
   viewSaveCoversSection.classList.add('hidden');
 }
 
-
-
 function viewSavedCovers() {
-  viewSaveCoversSection.classList.remove('hidden');
-  mainPageDisplay.classList.add('hidden');
+  displaySavedCover();
+  viewSavedCoversButtonHandler();
+  viewSavedCoversDisplayHandler();
+}
+
+function viewSavedCoversButtonHandler() {
   viewSavedButton.classList.add('hidden');
   saveCoverButton.classList.add('hidden');
   homeButton.classList.remove('hidden');
   showNewCoverButton.classList.add('hidden');
+}
+
+function viewSavedCoversDisplayHandler() {
+  viewSaveCoversSection.classList.remove('hidden');
+  mainPageDisplay.classList.add('hidden');
   displayUserForm.classList.add('hidden');
-  displaySavedCover();
 }
 
 function homeButtonFunction() {
@@ -159,6 +165,7 @@ function deleteSavedCovers(event) {
   }
   displaySavedCover();
 }
+
 function dataValidate(data) { 
   for (i = 0; i < inputFields.length; i++) { 
     if (inputFields[i].value == '') { 
@@ -170,20 +177,8 @@ function dataValidate(data) { 
   } 
 } 
 
-
-function dataValidate(data) {
-  for (i = 0; i < inputFields.length; i++) {
-    if (inputFields[i].value == '') {
-      makeABookButton.disabled = true;
-      return false;
-    } else {
-      makeABookButton.disabled = false;
-    }
-  }
-}
-
 function errorMessage() {
-  var allowedExtension = ['jpeg', 'jpg', 'png', 'gif', 'bmp'];
+  var allowedExtension = ['jpeg', 'jpg', 'png', 'bmp'];
   var coverValue = userCoverInput.value.split('.');
   for (var i = 0; i < allowedExtension.length; i++) {
     for (var j = 0; j < coverValue.length; j++) {
@@ -194,7 +189,6 @@ function errorMessage() {
   } alert `Not a valid image type`;
   return false;
 }
-
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
