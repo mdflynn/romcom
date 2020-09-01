@@ -46,7 +46,8 @@ function displayMainPageCover() {
 
 function showUserFormPage() {
   for (var i = 0; i < inputFields.length; i++) { 
-     inputFields[i].value = ''   }
+     inputFields[i].value = '' 
+   };
   switchToUserPage();
   userPageButtonHandler();
   switchPagesSaveToUser();
@@ -94,8 +95,9 @@ function homeButtonFunction() {
 }
 
 function switchToMainFromUser() {
-  mainPageDisplay.classList.toggle('hidden');
-  displayUserForm.classList.toggle('hidden');
+  mainPageDisplay.classList.remove('hidden');
+  displayUserForm.classList.add('hidden');
+  viewSaveCoversSection.classList.add('hidden');
 }
 
 function mainToUserButtonHandler() {
@@ -114,7 +116,7 @@ function createUserPost(event) {
   covers.push(coverValue);
   titles.push(titleValue);
   descriptors.push(descriptor1, descriptor2);
-  currentCover = new Cover(coverValue, titleValue, descriptor1, descriptor2)
+  currentCover = new Cover(coverValue, titleValue, descriptor1, descriptor2);
   coverImage.setAttribute('src', coverValue);
   coverTitle.innerHTML = titleValue;
   discriptorTagLine1.innerHTML = descriptor1;
@@ -122,8 +124,13 @@ function createUserPost(event) {
 }
 
 function homeFromUserPage() {
-  switchToMainFromUser();
+  switchToHomeDispalyHandler();
   switchFromUserButtonHandler();
+}
+
+function switchToHomeDispalyHandler() {
+  mainPageDisplay.classList.remove('hidden');
+  displayUserForm.classList.add('hidden');
 }
 
 function switchFromUserButtonHandler() {
