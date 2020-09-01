@@ -1,4 +1,3 @@
-// Create variables targetting the relevant DOM elements here 👇
 var coverImage = document.querySelector('.cover-image');
 var coverTitle = document.querySelector('.cover-title');
 var discriptorTagLine1 = document.querySelector('.tagline-1');
@@ -19,11 +18,9 @@ var makeABookButton = document.querySelector('.create-new-book-button');
 var savedCoverSection = document.querySelector('.saved-covers-section');
 var inputFields = document.getElementsByTagName('input');
 
-// We've provided a few variables below
 var savedCovers = [];
 var currentCover;
 
-// Add your event listeners here 👇
 showNewCoverButton.addEventListener('click', displayMainPageCover);
 makeOwnCoverButton.addEventListener('click', showUserFormPage);
 viewSavedButton.addEventListener('click', viewSavedCovers);
@@ -31,15 +28,10 @@ homeButton.addEventListener('click', homeButtonFunction);
 makeABookButton.addEventListener('click', clickHandler);
 makeABookButton.addEventListener('mouseover', errorMessage);
 saveCoverButton.addEventListener('click', saveCoverToArray);
-savedCoverSection.addEventListener('dblclick', deleteSavedCovers)
-
+savedCoverSection.addEventListener('dblclick', deleteSavedCovers);
 
 window.onload = displayMainPageCover;
 
-// Create your event handlers and other functions here 👇
-
-
-// We've provided one function to get you started
 function displayMainPageCover() {
   var randomCover = covers[getRandomIndex(covers)];
   var randomTitle = titles[getRandomIndex(titles)];
@@ -97,8 +89,16 @@ function viewSavedCoversDisplayHandler() {
 }
 
 function homeButtonFunction() {
-  mainPageDisplay.classList.remove('hidden');
-  displayUserForm.classList.add('hidden')
+  switchToMainFromUser();
+  mainToUserButtonHandler();
+}
+
+function switchToMainFromUser() {
+  mainPageDisplay.classList.toggle('hidden');
+  displayUserForm.classList.toggle('hidden');
+}
+
+function mainToUserButtonHandler() {
   homeButton.classList.add('hidden');
   saveCoverButton.classList.remove('hidden');
   showNewCoverButton.classList.remove('hidden');
@@ -117,17 +117,21 @@ function createUserPost(event) {
   currentCover = new Cover(coverValue, titleValue, descriptor1, descriptor2)
   coverImage.setAttribute('src', coverValue);
   coverTitle.innerHTML = titleValue;
-  discriptorTagLine1.innerText = descriptor1;
+  discriptorTagLine1.innerHTML = descriptor1;
   discriptorTagLine2.innerHTML = descriptor2;
 }
 
 function homeFromUserPage() {
-  mainPageDisplay.classList.remove('hidden');
-  displayUserForm.classList.add('hidden');
+  switchToMainFromUser();
+  switchFromUserButtonHandler();
+}
+
+function switchFromUserButtonHandler() {
   showNewCoverButton.classList.remove('hidden');
   saveCoverButton.classList.remove('hidden');
   homeButton.classList.add('hidden');
 }
+
 function clickHandler() {
   createUserPost(event);
   homeFromUserPage();
